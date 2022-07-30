@@ -85,6 +85,20 @@
                     }
                 });
             });
+
+            //给模态窗口日期添加日历
+
+            //当容器加载完毕 对容器调用工具函数
+            $(".myDate").datetimepicker({
+                language: "zh-CN",
+                format: 'yyyy-mm-dd',
+                minView: 'month',
+                initialDate: new Date(),
+                autoclose: true,
+                todayBtn: true,
+                clearBtn: true
+            });
+
         });
 
     </script>
@@ -125,11 +139,11 @@
                     <div class="form-group">
                         <label for="create-startDate" class="col-sm-2 control-label">开始日期</label>
                         <div class="col-sm-10" style="width: 300px;">
-                            <input type="text" class="form-control" id="create-startDate">
+                            <input type="text" class="form-control myDate" id="create-startDate" readonly>
                         </div>
                         <label for="create-endDate" class="col-sm-2 control-label">结束日期</label>
                         <div class="col-sm-10" style="width: 300px;">
-                            <input type="text" class="form-control" id="create-endDate">
+                            <input type="text" class="form-control myDate" id="create-endDate" readonly>
                         </div>
                     </div>
                     <div class="form-group">
@@ -274,7 +288,7 @@
     <div style="width: 100%; position: absolute;top: 5px; left: 10px;">
 
         <div class="btn-toolbar" role="toolbar" style="height: 80px;">
-            <form class="form-inline"  role="form" style="position: relative;top: 8%; left: 5px;">
+            <form class="form-inline" role="form" style="position: relative;top: 8%; left: 5px;">
 
                 <div class="form-group">
                     <div class="input-group">
