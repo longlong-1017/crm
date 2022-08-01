@@ -208,6 +208,7 @@
     <select id="selectActivityByConditionForPage" parameterType="map" resultMap="BaseResultMap">
         select a.id,
         u1.name as owner,
+        a.name,
         a.start_date,
         a.end_date,
         a.cost,
@@ -266,4 +267,13 @@
             </if>
         </where>
     </select>
+
+    <!--根据ID批量删除市场活动
+    int deleteActivityByIds(String[] ids);-->
+    <delete id="deleteActivityByIds" parameterType="string">
+        delete from tbl_activity where id in
+        <foreach collection="ids" item="id" open="(" close=")" separator=",">
+                                     #{id}
+        </foreach>
+    </delete>
 </mapper>

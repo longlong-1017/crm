@@ -8,16 +8,20 @@
     <base href="<%=basePath%>">
     <meta charset="UTF-8">
 
-    <link href="jquery/bootstrap_3.3.0/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
-    <link href="jquery/bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css" type="text/css"
-          rel="stylesheet"/>
+
+    <link href="jquery/bootstrap_3.3.0/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="jquery/bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css">
 
     <script type="text/javascript" src="jquery/jquery-1.11.1-min.js"></script>
     <script type="text/javascript" src="jquery/bootstrap_3.3.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="jquery/bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.js"></script>
-    <script type="text/javascript"
-            src="jquery/bootstrap-datetimepicker-master/locale/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script type="text/javascript" src="jquery/bootstrap-datetimepicker-master/locale/bootstrap-datetimepicker.zh-CN.js"></script>
 
+    <!--  PAGINATION plugin -->
+    <link rel="stylesheet" type="text/css" href="jquery/bs_pagination-master/css/jquery.bs_pagination.min.css">
+    <script type="text/javascript" src="jquery/bs_pagination-master/js/jquery.bs_pagination.min.js"></script>
+    <script type="text/javascript" src="jquery/bs_pagination-master/localization/en.js"></script>
+    <title>市场活动</title>
     <script type="text/javascript">
 
         $(function () {
@@ -27,6 +31,18 @@
                 $("#createActivityForm").get(0).reset();
                 //弹出创建市场活动的模态窗口
                 $("#createActivityModal").modal("show");
+            });
+
+            //给模态窗口日期添加日历
+            //当容器加载完毕 对容器调用工具函数
+            $(".myDate").datetimepicker({
+                language: "zh-CN",
+                format: 'yyyy-mm-dd',
+                minView: 'month',
+                initialDate: new Date(),
+                autoclose: true,
+                todayBtn: true,
+                clearBtn: true
             });
 
             //给模态窗口保存按钮添加单机事件
@@ -75,7 +91,7 @@
                             //关闭模态窗口
                             $("#createActivityModal").modal("hide");
                             //刷新市场活动列，显示第一页数据
-
+                            queryActivityByConditionForPage(1, $("#demo_pag1").bs_pagination('getOption', 'rowsPerPage'));
                         } else {
                             //提示信息
                             alert(data.message);
@@ -86,21 +102,85 @@
                 });
             });
 
-            //给模态窗口日期添加日历
+            //当市场活动主页面加载完成，查询所有数据的第一页以及所有数据的总条数,默认每页显示10条
+            queryActivityByConditionForPage(1, 10);
 
-            //当容器加载完毕 对容器调用工具函数
-            $(".myDate").datetimepicker({
-                language: "zh-CN",
-                format: 'yyyy-mm-dd',
-                minView: 'month',
-                initialDate: new Date(),
-                autoclose: true,
-                todayBtn: true,
-                clearBtn: true
+            //给"查询"按钮添加单击事件
+            $("#queryActivityBtn").click(function () {
+                //查询所有符合条件数据的第一页以及所有符合条件数据的总条数;
+                queryActivityByConditionForPage(1, $("#demo_pag1").bs_pagination('getOption', 'rowsPerPage'));
             });
 
         });
 
+        function queryActivityByConditionForPage(pageNo, pageSize) {
+            //收集参数
+            var name = $("#query-name").val();
+            var owner = $("#query-owner").val();
+            var startDate = $("#query-startDate").val();
+            var endDate = $("#query-endDate").val();
+            $.ajax({
+                url: 'workbench/activity/queryActivityByConditionForPage.do',
+                data: {
+                    name: name,
+                    owner: owner,
+                    startDate: startDate,
+                    endDate: endDate,
+                    pageNo: pageNo,
+                    pageSize: pageSize
+                },
+                type: 'post',
+                dataType: 'json',
+                success: function (data) {
+                    //显示总条数
+                    var htmlStr = "";
+                    $.each(data.activityList, function (index, obj) {
+                        htmlStr += "<tr class=\"active\">"
+                        htmlStr += "<td><input type=\"checkbox\" value=\"" + obj.id + "\"/></td>"
+                        htmlStr += "<td><a style=\"text-decoration: none; cursor: pointer;\" onclick=\"window.location.href='workbench/activity/detailActivity.do?id=" + obj.id + "'\">" + obj.name + "</a></td>";
+                        htmlStr += "<td>" + obj.owner + "</td>";
+                        htmlStr += "<td>" + obj.owner + "</td>"
+                        htmlStr += "<td>" + obj.startDate + "</td>"
+                        htmlStr += "<td>" + obj.endDate + "</td>"
+                        htmlStr += "</tr>"
+                    });
+                    $("#tBody").html(htmlStr);
+                    //每查一次取消全选
+                    $("#checkedAll").prop("checked", false);
+                    //计算总页数
+                    var totalPages = 1;
+                    if (data.totalRows % pageSize == 0) {
+                        totalPages = data.totalRows / pageSize;
+                    } else {
+                        totalPages = parseInt(data.totalRows / pageSize) + 1;
+                    }
+                    //调用分页工具函数,显示翻页信息
+                    //对容器调用bs_pagination工具函数，显示翻页信息
+                    $("#demo_pag1").bs_pagination({
+                        currentPage:pageNo,//当前页号,相当于pageNo
+
+                        rowsPerPage:pageSize,//每页显示条数,相当于pageSize
+                        totalRows:data.totalRows,//总条数
+                        totalPages: totalPages,  //总页数,必填参数.
+
+                        visiblePageLinks:4,//最多可以显示的卡片数
+
+                        showGoToPage:true,//是否显示"跳转到"部分,默认true--显示
+                        showRowsPerPage:true,//是否显示"每页显示条数"部分。默认true--显示
+                        showRowsInfo:true,//是否显示记录的信息，默认true--显示
+
+                        //用户每次切换页号，都自动触发本函数;
+                        //每次返回切换页号之后的pageNo和pageSize
+                        onChangePage: function(event,pageObj) { // returns page_num and rows_per_page after a link has clicked
+                            //js代码
+                            //alert(pageObj.currentPage);
+                            //alert(pageObj.rowsPerPage);
+                            queryActivityByConditionForPage(pageObj.currentPage,pageObj.rowsPerPage);
+                        }
+                    });
+                }
+            });
+        }
     </script>
 </head>
 <body>
@@ -293,14 +373,14 @@
                 <div class="form-group">
                     <div class="input-group">
                         <div class="input-group-addon">名称</div>
-                        <input class="form-control" type="text">
+                        <input class="form-control" type="text" id="query-name">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="input-group">
                         <div class="input-group-addon">所有者</div>
-                        <input class="form-control" type="text">
+                        <input class="form-control" type="text" id="query-owner">
                     </div>
                 </div>
 
@@ -308,17 +388,17 @@
                 <div class="form-group">
                     <div class="input-group">
                         <div class="input-group-addon">开始日期</div>
-                        <input class="form-control" type="text" id="startTime"/>
+                        <input class="form-control" type="text" id="query-startDate"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="input-group">
                         <div class="input-group-addon">结束日期</div>
-                        <input class="form-control" type="text" id="endTime">
+                        <input class="form-control" type="text" id="query-endDate">
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-default">查询</button>
+                <button type="button" class="btn btn-default" id="queryActivityBtn">查询</button>
 
             </form>
         </div>
@@ -349,68 +429,68 @@
             <table class="table table-hover">
                 <thead>
                 <tr style="color: #B3B3B3;">
-                    <td><input type="checkbox"/></td>
+                    <td><input type="checkbox" id="checkedAll"/></td>
                     <td>名称</td>
                     <td>所有者</td>
                     <td>开始日期</td>
                     <td>结束日期</td>
                 </tr>
                 </thead>
-                <tbody>
-                <tr class="active">
-                    <td><input type="checkbox"/></td>
-                    <td><a style="text-decoration: none; cursor: pointer;"
-                           onclick="window.location.href='detail.html';">发传单</a></td>
-                    <td>zhangsan</td>
-                    <td>2020-10-10</td>
-                    <td>2020-10-20</td>
-                </tr>
-                <tr class="active">
-                    <td><input type="checkbox"/></td>
-                    <td><a style="text-decoration: none; cursor: pointer;"
-                           onclick="window.location.href='detail.html';">发传单</a></td>
-                    <td>zhangsan</td>
-                    <td>2020-10-10</td>
-                    <td>2020-10-20</td>
-                </tr>
+                <tbody id="tBody">
+                <%-- <tr class="active">
+                     <td><input type="checkbox"/></td>
+                     <td><a style="text-decoration: none; cursor: pointer;"
+                            onclick="window.location.href='detail.html';">发传单</a></td>
+                     <td>zhangsan</td>
+                     <td>2020-10-10</td>
+                     <td>2020-10-20</td>
+                 </tr>
+                 <tr class="active">
+                     <td><input type="checkbox"/></td>
+                     <td><a style="text-decoration: none; cursor: pointer;"
+                            onclick="window.location.href='detail.html';">发传单</a></td>
+                     <td>zhangsan</td>
+                     <td>2020-10-10</td>
+                     <td>2020-10-20</td>
+                 </tr>--%>
                 </tbody>
             </table>
+            <div id="demo_pag1"></div>
         </div>
-
-        <div style="height: 50px; position: relative;top: 30px;">
-            <div>
-                <button type="button" class="btn btn-default" style="cursor: default;">共<b>50</b>条记录</button>
-            </div>
-            <div class="btn-group" style="position: relative;top: -34px; left: 110px;">
-                <button type="button" class="btn btn-default" style="cursor: default;">显示</button>
-                <div class="btn-group">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                        10
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">20</a></li>
-                        <li><a href="#">30</a></li>
-                    </ul>
-                </div>
-                <button type="button" class="btn btn-default" style="cursor: default;">条/页</button>
-            </div>
-            <div style="position: relative;top: -88px; left: 285px;">
-                <nav>
-                    <ul class="pagination">
-                        <li class="disabled"><a href="#">首页</a></li>
-                        <li class="disabled"><a href="#">上一页</a></li>
-                        <li class="active"><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#">下一页</a></li>
-                        <li class="disabled"><a href="#">末页</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
+        <%-- <div style="height: 50px; position: relative;top: 30px;">
+             <div>
+                 <button type="button" class="btn btn-default" style="cursor: default;">共<b>50</b>条记录</button>
+             </div>
+             <div class="btn-group" style="position: relative;top: -34px; left: 110px;">
+                 <button type="button" class="btn btn-default" style="cursor: default;">显示</button>
+                 <div class="btn-group">
+                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                         10
+                         <span class="caret"></span>
+                     </button>
+                     <ul class="dropdown-menu" role="menu">
+                         <li><a href="#">20</a></li>
+                         <li><a href="#">30</a></li>
+                     </ul>
+                 </div>
+                 <button type="button" class="btn btn-default" style="cursor: default;">条/页</button>
+             </div>
+             <div style="position: relative;top: -88px; left: 285px;">
+                 <nav>
+                     <ul class="pagination">
+                         <li class="disabled"><a href="#">首页</a></li>
+                         <li class="disabled"><a href="#">上一页</a></li>
+                         <li class="active"><a href="#">1</a></li>
+                         <li><a href="#">2</a></li>
+                         <li><a href="#">3</a></li>
+                         <li><a href="#">4</a></li>
+                         <li><a href="#">5</a></li>
+                         <li><a href="#">下一页</a></li>
+                         <li class="disabled"><a href="#">末页</a></li>
+                     </ul>
+                 </nav>
+             </div>
+         </div>--%>
 
     </div>
 

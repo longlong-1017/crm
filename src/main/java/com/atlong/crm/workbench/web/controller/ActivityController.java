@@ -76,11 +76,11 @@ public class ActivityController {
         map.put("pageSize",pageSize);
         //调用service层方法，查询数据
         List<Activity> activityList=activityService.queryActivityByConditionForPage(map);
-        int totalTows = activityService.queryCountOfActivityByCondition(map);
+        int totalRows = activityService.queryCountOfActivityByCondition(map);
         //封装相应信息
         Map<String,Object> retMap=new HashMap<>();
         retMap.put("activityList",activityList);
-        retMap.put("totalTows",totalTows);
+        retMap.put("totalRows",totalRows);
         return retMap;
     }
 }
