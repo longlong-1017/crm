@@ -9,13 +9,15 @@
     <meta charset="UTF-8">
 
 
-    <link href="jquery/bootstrap_3.3.0/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="jquery/bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css">
+    <link href="jquery/bootstrap_3.3.0/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css"
+          href="jquery/bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css">
 
     <script type="text/javascript" src="jquery/jquery-1.11.1-min.js"></script>
     <script type="text/javascript" src="jquery/bootstrap_3.3.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="jquery/bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.js"></script>
-    <script type="text/javascript" src="jquery/bootstrap-datetimepicker-master/locale/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script type="text/javascript"
+            src="jquery/bootstrap-datetimepicker-master/locale/bootstrap-datetimepicker.zh-CN.js"></script>
 
     <!--  PAGINATION plugin -->
     <link rel="stylesheet" type="text/css" href="jquery/bs_pagination-master/css/jquery.bs_pagination.min.css">
@@ -111,8 +113,56 @@
                 queryActivityByConditionForPage(1, $("#demo_pag1").bs_pagination('getOption', 'rowsPerPage'));
             });
 
+            //给CheckBoxall添加单机事件
+            $("#checkedAll").click(function () {
+                $("#tBody input[type='checkbox']").prop("checked", this.checked);
+            });
+            //给每条checkbox添加单机事件
+            $("#tBody").on("click", "input[type='checkbox']", function () {
+                if ($("#tBody input[type='checkbox']").size() == $("#tBody input[type='checkbox']:checked").size()) {
+                    $("#checkedAll").prop("checked", true);
+                } else {
+                    $("#checkedAll").prop("checked", false);
+                }
+            });
+
+            //给删除按钮添加单机事件
+            $("#deleteBtn").click(function () {
+                var checkedIds = $("#tBody input[type='checkbox']:checked");
+                if (checkedIds.size() == 0) {
+                    alert("请选择删除的市场活动");
+                    return;
+                }
+                if (window.confirm("确定删除吗?")) {
+                    var ids = "";
+                    $.each(checkedIds, function () {
+                        ids += "ids=" + this.value + "&";
+                    });
+                    ids = ids.substring(0,ids.length-1);
+                    //alert(ids);
+                    //发送请求
+                    $.ajax({
+                        url: 'workbench/activity/deleteActivityByIds.do',
+                        data: ids,
+                        type: 'post',
+                        dataType: 'json',
+                        success: function (data) {
+                            if (data.code == "1") {
+                                //alert("成功了");
+                                queryActivityByConditionForPage(1, $("#demo_pag1").bs_pagination('getOption', 'rowsPerPage'));
+                            }else {
+                                //提示信息
+                                alert(data.message);
+                            }
+                        }
+                    });
+                }
+
+            });
+
         });
 
+        //条件分页查询市场活动
         function queryActivityByConditionForPage(pageNo, pageSize) {
             //收集参数
             var name = $("#query-name").val();
@@ -139,9 +189,8 @@
                         htmlStr += "<td><input type=\"checkbox\" value=\"" + obj.id + "\"/></td>"
                         htmlStr += "<td><a style=\"text-decoration: none; cursor: pointer;\" onclick=\"window.location.href='workbench/activity/detailActivity.do?id=" + obj.id + "'\">" + obj.name + "</a></td>";
                         htmlStr += "<td>" + obj.owner + "</td>";
-                        htmlStr += "<td>" + obj.owner + "</td>"
-                        htmlStr += "<td>" + obj.startDate + "</td>"
-                        htmlStr += "<td>" + obj.endDate + "</td>"
+                        htmlStr += "<td>" + obj.startDate + "</td>";
+                        htmlStr += "<td>" + obj.endDate + "</td>";
                         htmlStr += "</tr>"
                     });
                     $("#tBody").html(htmlStr);
@@ -157,25 +206,25 @@
                     //调用分页工具函数,显示翻页信息
                     //对容器调用bs_pagination工具函数，显示翻页信息
                     $("#demo_pag1").bs_pagination({
-                        currentPage:pageNo,//当前页号,相当于pageNo
+                        currentPage: pageNo,//当前页号,相当于pageNo
 
-                        rowsPerPage:pageSize,//每页显示条数,相当于pageSize
-                        totalRows:data.totalRows,//总条数
+                        rowsPerPage: pageSize,//每页显示条数,相当于pageSize
+                        totalRows: data.totalRows,//总条数
                         totalPages: totalPages,  //总页数,必填参数.
 
-                        visiblePageLinks:4,//最多可以显示的卡片数
+                        visiblePageLinks: 4,//最多可以显示的卡片数
 
-                        showGoToPage:true,//是否显示"跳转到"部分,默认true--显示
-                        showRowsPerPage:true,//是否显示"每页显示条数"部分。默认true--显示
-                        showRowsInfo:true,//是否显示记录的信息，默认true--显示
+                        showGoToPage: true,//是否显示"跳转到"部分,默认true--显示
+                        showRowsPerPage: true,//是否显示"每页显示条数"部分。默认true--显示
+                        showRowsInfo: true,//是否显示记录的信息，默认true--显示
 
                         //用户每次切换页号，都自动触发本函数;
                         //每次返回切换页号之后的pageNo和pageSize
-                        onChangePage: function(event,pageObj) { // returns page_num and rows_per_page after a link has clicked
+                        onChangePage: function (event, pageObj) { // returns page_num and rows_per_page after a link has clicked
                             //js代码
                             //alert(pageObj.currentPage);
                             //alert(pageObj.rowsPerPage);
-                            queryActivityByConditionForPage(pageObj.currentPage,pageObj.rowsPerPage);
+                            queryActivityByConditionForPage(pageObj.currentPage, pageObj.rowsPerPage);
                         }
                     });
                 }
@@ -411,7 +460,9 @@
                 <button type="button" class="btn btn-default" data-toggle="modal" data-target="#editActivityModal"><span
                         class="glyphicon glyphicon-pencil"></span> 修改
                 </button>
-                <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-minus"></span> 删除</button>
+                <button type="button" class="btn btn-danger" id="deleteBtn"><span
+                        class="glyphicon glyphicon-minus"></span> 删除
+                </button>
             </div>
             <div class="btn-group" style="position: relative; top: 18%;">
                 <button type="button" class="btn btn-default" data-toggle="modal" data-target="#importActivityModal">

@@ -9,79 +9,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ffa7e1bc-91e5-44a9-8b00-6e98b464ef0f" name="Changes" comment="crm创建市场活动">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/crm_ear_exploded.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/crm_war_exploded.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/63f55082-daf6-4882-9c68-bb7e09ee1b6b.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/63f55082-daf6-4882-9c68-bb7e09ee1b6b/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/63f55082-daf6-4882-9c68-bb7e09ee1b6b/storage_v2/_src_/schema/mysql.osA4Bg.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/63f55082-daf6-4882-9c68-bb7e09ee1b6b/storage_v2/_src_/schema/performance_schema.kIw0nw.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/63f55082-daf6-4882-9c68-bb7e09ee1b6b/storage_v2/_src_/schema/sys.zb4BAA.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/jquery/bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/jquery/bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/jquery/bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/jquery/bootstrap-datetimepicker-master/locale/bootstrap-datetimepicker.zh-CN.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/jquery/bootstrap-datetimepicker-master_bak/css/bootstrap-datetimepicker.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/jquery/bootstrap-datetimepicker-master_bak/js/bootstrap-datetimepicker.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/jquery/bootstrap-datetimepicker-master_bak/locale/bootstrap-datetimepicker.zh-CN.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/jquery/bootstrap_3.3.0/css/bootstrap-theme.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/jquery/bootstrap_3.3.0/css/bootstrap.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/jquery/bootstrap_3.3.0/fonts/glyphicons-halflings-regular.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/jquery/bootstrap_3.3.0/fonts/glyphicons-halflings-regular.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/jquery/bootstrap_3.3.0/fonts/glyphicons-halflings-regular.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/jquery/bootstrap_3.3.0/fonts/glyphicons-halflings-regular.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/jquery/bootstrap_3.3.0/js/bootstrap.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/jquery/bootstrap_3.3.0/js/npm.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/jquery/bootstrap_3.3.0_bak/css/bootstrap-theme.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/jquery/bootstrap_3.3.0_bak/css/bootstrap.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/jquery/bootstrap_3.3.0_bak/fonts/glyphicons-halflings-regular.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/jquery/bootstrap_3.3.0_bak/fonts/glyphicons-halflings-regular.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/jquery/bootstrap_3.3.0_bak/fonts/glyphicons-halflings-regular.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/jquery/bootstrap_3.3.0_bak/fonts/glyphicons-halflings-regular.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/jquery/bootstrap_3.3.0_bak/js/bootstrap.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/jquery/bootstrap_3.3.0_bak/js/npm.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/jquery/bs_pagination-master/css/jquery.bs_pagination.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/jquery/bs_pagination-master/js/jquery.bs_pagination.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/jquery/bs_pagination-master/localization/el.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/jquery/bs_pagination-master/localization/el.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/jquery/bs_pagination-master/localization/en.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/jquery/bs_pagination-master/localization/en.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/jquery/bs_pagination-master/localization/ru.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/jquery/bs_pagination-master/localization/ru.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/jquery/bs_typeahead/bootstrap3-typeahead.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/jquery/echars/echarts.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/jquery/jquery-1.11.1-min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/jquery/zTree_v3-master/css/zTreeStyle/img/diy/1_close.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/jquery/zTree_v3-master/css/zTreeStyle/img/diy/1_open.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/jquery/zTree_v3-master/css/zTreeStyle/img/diy/2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/jquery/zTree_v3-master/css/zTreeStyle/img/diy/3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/jquery/zTree_v3-master/css/zTreeStyle/img/diy/4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/jquery/zTree_v3-master/css/zTreeStyle/img/diy/5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/jquery/zTree_v3-master/css/zTreeStyle/img/diy/6.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/jquery/zTree_v3-master/css/zTreeStyle/img/diy/7.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/jquery/zTree_v3-master/css/zTreeStyle/img/diy/8.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/jquery/zTree_v3-master/css/zTreeStyle/img/diy/9.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/jquery/zTree_v3-master/css/zTreeStyle/img/line_conn.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/jquery/zTree_v3-master/css/zTreeStyle/img/loading.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/jquery/zTree_v3-master/css/zTreeStyle/img/zTreeStandard.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/jquery/zTree_v3-master/css/zTreeStyle/img/zTreeStandard.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/jquery/zTree_v3-master/css/zTreeStyle/zTreeStyle.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/jquery/zTree_v3-master/js/jquery.ztree.all.min.js" afterDir="false" />
+    <list default="true" id="ffa7e1bc-91e5-44a9-8b00-6e98b464ef0f" name="Changes" comment="前端分页查询">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/63f55082-daf6-4882-9c68-bb7e09ee1b6b.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/63f55082-daf6-4882-9c68-bb7e09ee1b6b.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/atlong/crm/workbench/mapper/ActivityMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/atlong/crm/workbench/mapper/ActivityMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/atlong/crm/workbench/mapper/ActivityMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/atlong/crm/workbench/mapper/ActivityMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/atlong/crm/workbench/service/ActivityService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/atlong/crm/workbench/service/ActivityService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/atlong/crm/workbench/service/impl/ActivityServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/atlong/crm/workbench/service/impl/ActivityServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/atlong/crm/workbench/web/controller/ActivityController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/atlong/crm/workbench/web/controller/ActivityController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/workbench/activity/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/workbench/activity/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,9 +24,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Jsp File" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="Jsp File" />
       </list>
     </option>
   </component>
@@ -118,35 +51,38 @@
       </MavenGeneralSettings>
     </option>
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
+  </component>
   <component name="ProjectId" id="2CCSW9vznQAbyBPo0a6VoN1oX1u" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "jdk.selected.JAVA_MODULE": "1.8",
-    "last_opened_file_path": "F:/IdeaProjects/crm-mybaris-generater/crm-mybaris-generater/src/main/resources",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "editor.preferences.tabs",
-    "spring.configuration.checksum": "1fece0cb254f1f45891bc9ee9fed72a9"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;1.8&quot;,
+    &quot;last_opened_file_path&quot;: &quot;F:/IdeaProjects/crm-mybaris-generater/crm-mybaris-generater/src/main/resources&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.tabs&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;1fece0cb254f1f45891bc9ee9fed72a9&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="F:\IdeaProjects\crm-mybaris-generater\crm-mybaris-generater\src\main\resources" />
@@ -292,7 +228,11 @@
       <workItem from="1658758275626" duration="4272000" />
       <workItem from="1658923152674" duration="6489000" />
       <workItem from="1659082148451" duration="11830000" />
-      <workItem from="1659185488998" duration="8485000" />
+      <workItem from="1659185488998" duration="8827000" />
+      <workItem from="1659358674249" duration="13493000" />
+      <workItem from="1659372321617" duration="236000" />
+      <workItem from="1659440621577" duration="5801000" />
+      <workItem from="1659446479057" duration="1674000" />
     </task>
     <task id="LOCAL-00001" summary="crm创建市场活动">
       <created>1659099599269</created>
@@ -301,7 +241,21 @@
       <option name="project" value="LOCAL" />
       <updated>1659099599269</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="制作日历,分页查询市场活动">
+      <created>1659194091016</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1659194091016</updated>
+    </task>
+    <task id="LOCAL-00003" summary="前端分页查询">
+      <created>1659372423819</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1659372423819</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -320,15 +274,17 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="crm创建市场活动" />
-    <option name="LAST_COMMIT_MESSAGE" value="crm创建市场活动" />
+    <MESSAGE value="制作日历,分页查询市场活动" />
+    <MESSAGE value="前端分页查询" />
+    <option name="LAST_COMMIT_MESSAGE" value="前端分页查询" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/atlong/crm/workbench/web/controller/ActivityController.java</url>
-          <line>73</line>
-          <option name="timeStamp" value="2" />
+          <line>91</line>
+          <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
