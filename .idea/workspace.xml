@@ -9,10 +9,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ffa7e1bc-91e5-44a9-8b00-6e98b464ef0f" name="Changes" comment="前端分页查询">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/63f55082-daf6-4882-9c68-bb7e09ee1b6b.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/63f55082-daf6-4882-9c68-bb7e09ee1b6b.xml" afterDir="false" />
+    <list default="true" id="ffa7e1bc-91e5-44a9-8b00-6e98b464ef0f" name="Changes" comment="删除市场活动&#10;全选与取消全选">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/atlong/crm/workbench/mapper/ActivityMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/atlong/crm/workbench/mapper/ActivityMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/atlong/crm/workbench/mapper/ActivityMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/atlong/crm/workbench/mapper/ActivityMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/atlong/crm/workbench/service/ActivityService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/atlong/crm/workbench/service/ActivityService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/atlong/crm/workbench/service/impl/ActivityServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/atlong/crm/workbench/service/impl/ActivityServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/atlong/crm/workbench/web/controller/ActivityController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/atlong/crm/workbench/web/controller/ActivityController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/workbench/activity/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/workbench/activity/index.jsp" afterDir="false" />
     </list>
@@ -60,29 +62,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;1.8&quot;,
-    &quot;last_opened_file_path&quot;: &quot;F:/IdeaProjects/crm-mybaris-generater/crm-mybaris-generater/src/main/resources&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.tabs&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;1fece0cb254f1f45891bc9ee9fed72a9&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "jdk.selected.JAVA_MODULE": "1.8",
+    "last_opened_file_path": "F:/IdeaProjects/crm-mybaris-generater/crm-mybaris-generater/src/main/resources",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "editor.preferences.tabs",
+    "spring.configuration.checksum": "1fece0cb254f1f45891bc9ee9fed72a9"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
+    ],
+    "com.intellij.ide.scratch.LRUPopupBuilder$1/SQL Dialect": [
+      "MySQL"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="F:\IdeaProjects\crm-mybaris-generater\crm-mybaris-generater\src\main\resources" />
@@ -232,7 +237,8 @@
       <workItem from="1659358674249" duration="13493000" />
       <workItem from="1659372321617" duration="236000" />
       <workItem from="1659440621577" duration="5801000" />
-      <workItem from="1659446479057" duration="1674000" />
+      <workItem from="1659446479057" duration="2259000" />
+      <workItem from="1659526195983" duration="9480000" />
     </task>
     <task id="LOCAL-00001" summary="crm创建市场活动">
       <created>1659099599269</created>
@@ -255,7 +261,14 @@
       <option name="project" value="LOCAL" />
       <updated>1659372423819</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="删除市场活动&#10;全选与取消全选">
+      <created>1659448533997</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1659448533997</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -276,14 +289,15 @@
     <MESSAGE value="crm创建市场活动" />
     <MESSAGE value="制作日历,分页查询市场活动" />
     <MESSAGE value="前端分页查询" />
-    <option name="LAST_COMMIT_MESSAGE" value="前端分页查询" />
+    <MESSAGE value="删除市场活动&#10;全选与取消全选" />
+    <option name="LAST_COMMIT_MESSAGE" value="删除市场活动&#10;全选与取消全选" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/atlong/crm/workbench/web/controller/ActivityController.java</url>
-          <line>91</line>
+          <line>120</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
