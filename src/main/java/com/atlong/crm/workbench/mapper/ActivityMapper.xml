@@ -270,4 +270,21 @@
         </set>
         where id = #{id,jdbcType=CHAR}
     </update>
+
+    <!--int selectAllActivities();-->
+    <select id="selectAllActivities" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tbl_activity
+    </select>
+
+    <!--List<Activity> selectActivitiesByIds(String[] id);-->
+    <select id="selectActivitiesByIds" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tbl_activity where id in
+        <foreach collection="array" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </select>
 </mapper>

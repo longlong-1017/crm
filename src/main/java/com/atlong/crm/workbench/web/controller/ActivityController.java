@@ -2,19 +2,27 @@ package com.atlong.crm.workbench.web.controller;
 
 import com.atlong.crm.commons.constant.Constant;
 import com.atlong.crm.commons.domain.ReturnObject;
+import com.atlong.crm.commons.utils.ActivitiesWorkbookUtils;
 import com.atlong.crm.commons.utils.DataUtils;
 import com.atlong.crm.commons.utils.UUIDUtils;
 import com.atlong.crm.settings.domain.User;
 import com.atlong.crm.settings.service.UserService;
 import com.atlong.crm.workbench.domian.Activity;
 import com.atlong.crm.workbench.service.ActivityService;
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.OutputStream;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -92,7 +100,7 @@ public class ActivityController {
             int result = activityService.deleteActivityByIds(ids);
             if (result > 0) {
                 returnObject.setCode(Constant.RETURN_OBJECT_CODE_SUCCESS);
-            }else {
+            } else {
                 returnObject.setCode(Constant.RETURN_OBJECT_CODE_FAIL);
                 returnObject.setMessage("系统繁忙，请稍后重试...");
             }
@@ -105,24 +113,25 @@ public class ActivityController {
         }
         return returnObject;
     }
+
     @RequestMapping("/workbench/activity/queryActivityById.do")
-    public @ResponseBody Object queryActivityById(String id){
+    public @ResponseBody Object queryActivityById(String id) {
         Activity activity = activityService.queryActivityById(id);
         return activity;
     }
 
     @RequestMapping("workbench/activity/editActivity.do")
-    public @ResponseBody ReturnObject editActivity(Activity activity,HttpSession session){
-        User user =(User) session.getAttribute(Constant.SESSION_USER);
+    public @ResponseBody ReturnObject editActivity(Activity activity, HttpSession session) {
+        User user = (User) session.getAttribute(Constant.SESSION_USER);
         activity.setEditBy(user.getName());
         activity.setEditTime(DataUtils.formatDate(new Date()));
-        ReturnObject returnObject=new ReturnObject();
+        ReturnObject returnObject = new ReturnObject();
         try {
             int result = activityService.updateActivity(activity);
-            if(result==0){
+            if (result == 0) {
                 returnObject.setCode(Constant.RETURN_OBJECT_CODE_FAIL);
                 returnObject.setMessage("系统繁忙,请稍后重试");
-            }else {
+            } else {
                 returnObject.setCode(Constant.RETURN_OBJECT_CODE_SUCCESS);
             }
         } catch (Exception e) {
@@ -132,4 +141,33 @@ public class ActivityController {
         }
         return returnObject;
     }
+
+    @RequestMapping("workbench/activity/exportAllActivities.do")
+    public void exportAllActivities(HttpServletResponse response) throws Exception{
+        //查询所有的市场活动
+        List<Activity> activities = activityService.queryAllActivities();
+        HSSFWorkbook wb = ActivitiesWorkbookUtils.getWorkbook(activities);
+        //把生成的excel文件下载到客户端
+            response.setContentType("application/octet-stream;charset=UTF-8");
+            response.addHeader("Content-Disposition","attachment;filename=activities.xls");
+            OutputStream out=response.getOutputStream();
+            wb.write(out);
+            wb.close();
+            out.flush();
+    }
+    @RequestMapping("workbench/activity/exportSelectedActivities.do")
+    public void exportSelectedActivities(@RequestParam("id") String[] ids, HttpServletResponse response)throws Exception{
+        List<Activity> activities = activityService.queryActivitiesByIds(ids);
+        HSSFWorkbook wb = ActivitiesWorkbookUtils.getWorkbook(activities);
+        //把生成的excel文件下载到客户端
+        response.setContentType("application/octet-stream;charset=UTF-8");
+        response.addHeader("Content-Disposition","attachment;filename=activities.xls");
+        OutputStream out=response.getOutputStream();
+        wb.write(out);
+        wb.close();
+        out.flush();
+    }
+
+
+
 }

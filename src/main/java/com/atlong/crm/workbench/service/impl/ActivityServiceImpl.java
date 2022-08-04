@@ -5,6 +5,7 @@ import com.atlong.crm.workbench.mapper.ActivityMapper;
 import com.atlong.crm.workbench.service.ActivityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 import java.util.Map;
@@ -46,5 +47,14 @@ public class ActivityServiceImpl implements ActivityService {
         return activityMapper.updateByPrimaryKeySelective(activity);
     }
 
+    @Override
+    public List<Activity> queryAllActivities() {
+        return activityMapper.selectAllActivities();
+    }
+
+    @Override
+    public List<Activity> queryActivitiesByIds(String[] ids) {
+        return activityMapper.selectActivitiesByIds(ids);
+    }
 
 }
