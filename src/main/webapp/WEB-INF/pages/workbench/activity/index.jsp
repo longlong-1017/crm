@@ -238,10 +238,85 @@
                         if (data.code == '1') {
                             $("#editActivityModal").modal("hide");
                             //刷新市场活动列，显示当前页
-                            queryActivityByConditionForPage($("#demo_pag1").bs_pagination('getOption', 'currentPage'),$("#demo_pag1").bs_pagination('getOption', 'rowsPerPage'));
+                            queryActivityByConditionForPage($("#demo_pag1").bs_pagination('getOption', 'currentPage'), $("#demo_pag1").bs_pagination('getOption', 'rowsPerPage'));
                         } else {
                             alert(data.message());
                             $("#editActivityModal").modal("show");
+                        }
+                    }
+                });
+            });
+
+            //给批量导出市场活动按钮添加单机事件
+            $("#exportActivityAllBtn").click(function () {
+                window.location.href = "workbench/activity/exportAllActivities.do";
+            });
+
+            //给选择导出市场活动添加单机按钮
+            $("#exportActivitySelectedBtn").click(function () {
+                var $checkedIds = $("#tBody input[type='checkbox']:checked");
+                if ($checkedIds.size() == 0) {
+                    alert("请选择需要导出的市场活动");
+                    return;
+                }
+                var ids = "";
+                $.each($checkedIds, function () {
+                    ids += "id=" + this.value + "&";
+                });
+                if (window.confirm("你选择了" + $checkedIds.size() + "条数据，确定导出吗?")) {
+                    //var url="workbench/activity/exportSelectedActivities.do";
+                    ids = ids.substring(0, ids.length - 1);
+                    /* //发送带ids的同步请求 ???为什么不行????
+                     $.ajaxSettings.async=false;
+                     $.get(url,ids,function (data) {
+                         return data;
+                     });*/
+                    window.location.href = "workbench/activity/exportSelectedActivities.do?" + ids;
+                }
+            });
+
+            //给下载市场活动按钮添加单机事件
+            $("#DownloadActivityFile").click(function () {
+                window.location.href = "workbench/activity/downloadActivityFile.do";
+            });
+
+            //给导入按钮添加点击事件
+            $("#importActivityBtn").click(function () {
+                //收集参数
+                var activityFileName = $("#uploadActivityFile").val();
+                var suffix = activityFileName.substring(activityFileName.lastIndexOf(".") + 1).toLocaleLowerCase();
+                alert(suffix);
+                if (suffix != "xls") {
+                    alert("只支持xls文件");
+                    return;
+                }
+                var activityFile = $("#uploadActivityFile")[0].files[0];
+                //FormData是ajax提供的接口,可以模拟键值对向后台提交参数;
+                //FormData最大的优势是不但能提交文本数据，还能提交二进制数据
+                var formData = new FormData();
+                formData.append("activityFile", activityFile);
+                //formData.append("userName","lisi");
+                //发送Ajax请求
+                $.ajax({
+                    url: 'workbench/activity/importActivities.do',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    type: 'post',
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.code == "1") {
+                            //提示成功导入记录条数
+                            alert("成功导入" + data.retData + "条记录");
+                            //关闭模态窗口
+                            $("#importActivityModal").modal("hide");
+                            //刷新市场活动列表,显示第一页数据,保持每页显示条数不变
+                            queryActivityByConditionForPage(1, $("#demo_pag1").bs_pagination('getOption', 'rowsPerPage'));
+                        } else {
+                            //提示信息
+                            alert(data.message);
+                            //模态窗口不关闭
+                            $("#importActivityModal").modal("show");
                         }
                     }
                 });
@@ -469,7 +544,13 @@
                     请选择要上传的文件：<small style="color: gray;">[仅支持.xls]</small>
                 </div>
                 <div style="position: relative;top: 40px; left: 50px;">
-                    <input type="file" id="activityFile">
+                    <input type="file" id="uploadActivityFile">
+                </div>
+                <div style="position: relative;top: 60px; left: 50px;">
+                    点击以下按钮下载模板文件：<small style="color: gray;">[仅支持.xls]</small>
+                </div>
+                <div style="position: relative;top: 80px; left: 50px;">
+                    <button style="accent-color: #2a6496" id="DownloadActivityFile">市场活动模板文件下载</button>
                 </div>
                 <div style="position: relative; width: 400px; height: 320px; left: 45% ; top: -40px;">
                     <h3>重要提示</h3>
@@ -558,7 +639,7 @@
                 <button id="exportActivityAllBtn" type="button" class="btn btn-default"><span
                         class="glyphicon glyphicon-export"></span> 下载列表数据（批量导出）
                 </button>
-                <button id="exportActivityXzBtn" type="button" class="btn btn-default"><span
+                <button id="exportActivitySelectedBtn" type="button" class="btn btn-default"><span
                         class="glyphicon glyphicon-export"></span> 下载列表数据（选择导出）
                 </button>
             </div>

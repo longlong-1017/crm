@@ -287,4 +287,13 @@
             #{id}
         </foreach>
     </select>
+
+    <!--int insertActivities(List<Activity> activities);-->
+    <insert id="insertActivities" parameterType="Activity">
+        insert into tbl_activity(id, owner, name, start_date, end_date, cost, description, create_time, create_by)
+        values
+        <foreach collection="list" item="obj" separator=",">
+            (#{obj.id},#{obj.owner},#{obj.name},#{obj.startDate},#{obj.endDate},#{obj.cost},#{obj.description},#{obj.createTime},#{obj.createBy})
+        </foreach>
+    </insert>
 </mapper>

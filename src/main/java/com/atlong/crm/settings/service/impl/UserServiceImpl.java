@@ -3,6 +3,7 @@ package com.atlong.crm.settings.service.impl;
 import com.atlong.crm.settings.domain.User;
 import com.atlong.crm.settings.mapper.UserMapper;
 import com.atlong.crm.settings.service.UserService;
+import com.atlong.crm.workbench.domian.Activity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,4 +31,11 @@ public class UserServiceImpl implements UserService {
     public List<User> queryAllUser() {
         return userMapper.selectAllUser();
     }
+
+    @Override
+    public List<User> queryAllActAndName() {
+        return userMapper.selectAllActAndNameMap();
+    }
+
+
 }

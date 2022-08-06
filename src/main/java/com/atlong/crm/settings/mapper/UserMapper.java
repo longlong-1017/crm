@@ -57,4 +57,6 @@ public interface UserMapper {
     User selectByActAndPwd(Map<String,Object> map);
 
     List<User> selectAllUser();
+
+    List<User> selectAllActAndNameMap();
 }

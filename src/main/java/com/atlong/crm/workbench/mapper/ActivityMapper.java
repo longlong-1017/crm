@@ -72,4 +72,11 @@ public interface ActivityMapper {
 
     //查询市场活动通过ids
     List<Activity> selectActivitiesByIds(String[] ids);
+
+    /**
+     * 批量保存创建的市场活动
+     * @param activities
+     * @return
+     */
+    int insertActivities(List<Activity> activities);
 }

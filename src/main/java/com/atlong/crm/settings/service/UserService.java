@@ -1,6 +1,7 @@
 package com.atlong.crm.settings.service;
 
 import com.atlong.crm.settings.domain.User;
+import com.atlong.crm.workbench.domian.Activity;
 
 import java.util.List;
 import java.util.Map;
@@ -13,4 +14,7 @@ public interface UserService {
     User queryByActAndPwd(Map<String,Object> map);
 
     List<User> queryAllUser();
+
+    List<User> queryAllActAndName();
+
 }

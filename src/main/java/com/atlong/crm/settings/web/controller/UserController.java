@@ -2,7 +2,7 @@ package com.atlong.crm.settings.web.controller;
 
 import com.atlong.crm.commons.constant.Constant;
 import com.atlong.crm.commons.domain.ReturnObject;
-import com.atlong.crm.commons.utils.DataUtils;
+import com.atlong.crm.commons.utils.DateUtils;
 import com.atlong.crm.settings.domain.User;
 import com.atlong.crm.settings.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +50,7 @@ public class UserController {
             returnObject.setCode(Constant.RETURN_OBJECT_CODE_FAIL);
             returnObject.setMessage("用户名或密码错误");
         }else {
-            if(DataUtils.formatDateTime(new Date()).compareTo(user.getExpireTime())>0){
+            if(DateUtils.formatDateTime(new Date()).compareTo(user.getExpireTime())>0){
                 returnObject.setCode(Constant.RETURN_OBJECT_CODE_FAIL);
                 returnObject.setMessage("账号已经过期");
             }else if ("0".equals(user.getLockState())){

@@ -8,7 +8,7 @@ import java.util.Date;
  * @Author: YunLong
  * @Date: 2022/7/22 20:34
  */
-public class DataUtils {
+public class DateUtils {
     /**
      * 对指定的date对象进行格式化: yyyy-MM-dd HH:mm:ss
      * @param date

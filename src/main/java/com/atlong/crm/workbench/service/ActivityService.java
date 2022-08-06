@@ -25,4 +25,5 @@ public interface ActivityService {
     List<Activity> queryAllActivities();
 
     List<Activity> queryActivitiesByIds(String[] ids);
+    int addActivities(List<Activity> activities);
 }
