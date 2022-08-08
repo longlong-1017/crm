@@ -10,7 +10,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ffa7e1bc-91e5-44a9-8b00-6e98b464ef0f" name="Changes" comment="下载市场活动导入模板&#10;上传市场活动&#10;bug:日期处理 空指针异常(228行)">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/atlong/crm/workbench/service/ActivityRemarkService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/atlong/crm/workbench/service/impl/ActivityRemarkServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/atlong/crm/workbench/mapper/ActivitiesRemarkMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/atlong/crm/workbench/mapper/ActivitiesRemarkMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/atlong/crm/workbench/mapper/ActivitiesRemarkMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/atlong/crm/workbench/mapper/ActivitiesRemarkMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/atlong/crm/workbench/mapper/ActivityMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/atlong/crm/workbench/mapper/ActivityMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/atlong/crm/workbench/mapper/ActivityMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/atlong/crm/workbench/mapper/ActivityMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/atlong/crm/workbench/service/ActivityService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/atlong/crm/workbench/service/ActivityService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/atlong/crm/workbench/service/impl/ActivityServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/atlong/crm/workbench/service/impl/ActivityServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/atlong/crm/workbench/web/controller/ActivityController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/atlong/crm/workbench/web/controller/ActivityController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/workbench/activity/detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/workbench/activity/detail.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/workbench/activity/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/workbench/activity/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/workbench/contacts/detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/workbench/contacts/detail.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,9 +32,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Jsp File" />
         <option value="JUnit3 Test Class" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -72,6 +84,7 @@
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.6557377",
@@ -263,6 +276,9 @@
       <workItem from="1659526195983" duration="10084000" />
       <workItem from="1659610585646" duration="15431000" />
       <workItem from="1659699402333" duration="22414000" />
+      <workItem from="1659889149200" duration="103000" />
+      <workItem from="1659889745772" duration="169000" />
+      <workItem from="1659925369481" duration="13666000" />
     </task>
     <task id="LOCAL-00001" summary="crm创建市场活动">
       <created>1659099599269</created>
@@ -334,15 +350,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="下载市场活动导入模板&#10;上传市场活动&#10;bug:日期处理 空指针异常(228行)" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/atlong/crm/workbench/web/controller/ActivityController.java</url>
-          <line>226</line>
-          <option name="timeStamp" value="20" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory">
         <watch expression="((HashMap.Node)((HashMap)actUsersMap).entrySet().toArray()[0]).getKey()" custom="java.util.HashMap.Node,java.util.HashMap" />
