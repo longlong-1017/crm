@@ -26,4 +26,6 @@ public interface ActivityService {
 
     List<Activity> queryActivitiesByIds(String[] ids);
     int addActivities(List<Activity> activities);
+
+    Activity queryActivityForDetailById(String id);
 }

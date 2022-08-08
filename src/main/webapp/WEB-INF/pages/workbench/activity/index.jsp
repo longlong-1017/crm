@@ -285,7 +285,7 @@
                 //收集参数
                 var activityFileName = $("#uploadActivityFile").val();
                 var suffix = activityFileName.substring(activityFileName.lastIndexOf(".") + 1).toLocaleLowerCase();
-                alert(suffix);
+                //alert(suffix);
                 if (suffix != "xls") {
                     alert("只支持xls文件");
                     return;
@@ -659,7 +659,7 @@
                 <%-- <tr class="active">
                      <td><input type="checkbox"/></td>
                      <td><a style="text-decoration: none; cursor: pointer;"
-                            onclick="window.location.href='detail.html';">发传单</a></td>
+                            onclick="window.location.href='detail.jsp';">发传单</a></td>
                      <td>zhangsan</td>
                      <td>2020-10-10</td>
                      <td>2020-10-20</td>
@@ -667,7 +667,7 @@
                  <tr class="active">
                      <td><input type="checkbox"/></td>
                      <td><a style="text-decoration: none; cursor: pointer;"
-                            onclick="window.location.href='detail.html';">发传单</a></td>
+                            onclick="window.location.href='detail.jsp';">发传单</a></td>
                      <td>zhangsan</td>
                      <td>2020-10-10</td>
                      <td>2020-10-20</td>
