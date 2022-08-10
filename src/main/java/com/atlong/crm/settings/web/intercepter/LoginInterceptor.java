@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
  * @Author: YunLong
  * @Date: 2022/7/27 20:03
  */
-public class LoginIntercepter implements HandlerInterceptor {
+public class LoginInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
         HttpSession session = httpServletRequest.getSession();

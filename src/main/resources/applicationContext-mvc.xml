@@ -44,7 +44,7 @@ http://www.springframework.org/schema/util/spring-util.xsd">
             <mvc:exclude-mapping path="/settings/qx/user/toLogin.do"/>
             <mvc:exclude-mapping path="/settings/qx/user/login.do"/>
             <!--拦截器类-->
-            <bean class="com.atlong.crm.settings.web.intercepter.LoginIntercepter"/>
+            <bean class="com.atlong.crm.settings.web.intercepter.LoginInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
     <!-- 配置文件上传解析器 id:必须是multipartResolver-->
