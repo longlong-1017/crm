@@ -23,6 +23,7 @@
     <link rel="stylesheet" type="text/css" href="jquery/bs_pagination-master/css/jquery.bs_pagination.min.css">
     <script type="text/javascript" src="jquery/bs_pagination-master/js/jquery.bs_pagination.min.js"></script>
     <script type="text/javascript" src="jquery/bs_pagination-master/localization/en.js"></script>
+
     <title>市场活动</title>
     <script type="text/javascript">
 
@@ -98,7 +99,7 @@
                             //提示信息
                             alert(data.message);
                             //模态窗口不关闭
-                            $("#createActivityModal").model("show");//可省虐不写
+                            $("#createActivityModal").modal("show");//可省虐不写
                         }
                     }
                 });

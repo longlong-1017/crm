@@ -13,7 +13,7 @@
     <script type="text/javascript" src="jquery/jquery-1.11.1-min.js"></script>
     <script type="text/javascript" src="jquery/bootstrap_3.3.0/js/bootstrap.min.js"></script>
     <script type="text/javascript">
-		$(function () {
+        $(function () {
             //给CheckBoxall添加单机事件
             $("#checkedAll").click(function () {
                 $("#tBody input[type='checkbox']").prop("checked", this.checked);
@@ -28,53 +28,55 @@
             });
 
             //给删除按钮添加单机事件
-           $("#deleteDicTypeBtn").click(function () {
-               var $checkedCodes = $("#tBody input[type='checkbox']:checked");
-               if($checkedCodes.size()==0){
-                   alert("请选择需要删除的字典类型");
-                   return;
-               }
-               if (window.confirm("确定删除吗?")) {
-                   var codes = "";
-                   $.each($checkedCodes, function () {
-                       //一个bug待处理
-                       codes += "code=" + this.value + "&";
-                   });
-                   codes = codes.substring(0, codes.length - 1);
-                   //alert(ids);
-                   //发送请求
-                   $.ajax({
-                       url: 'settings/dictionary/type/deleteDicType.do',
-                       data: codes,
-                       type: 'post',
-                       dataType: 'json',
-                       success: function (data) {
-                           if (data.code == "1") {
-                               //alert("成功了");
-                              window.location.href="settings/dictionary/type/index.do";
-                           } else {
-                               //提示信息
-                               alert(data.message);
-                           }
-                       }
-                   });
-               }
+            $("#deleteDicTypeBtn").click(function () {
+                var $checkedCodes = $("#tBody input[type='checkbox']:checked");
+                if ($checkedCodes.size() == 0) {
+                    alert("请选择需要删除的字典类型");
+                    return;
+                }
+                if (window.confirm("确定删除吗?")) {
+                    var codes = "";
+                    $.each($checkedCodes, function () {
+                        //一个bug待处理 indexOf 首次出现 lastIndexOf 最后一次出现
+                        var code = this.value.substring(0, this.value.indexOf('&'));
+                        //alert(code);
+                        codes += code + "&";
+                    });
+                    codes = codes.substring(0, codes.length - 1);
+                    //alert(ids);
+                    //发送请求
+                    $.ajax({
+                        url: 'settings/dictionary/type/deleteDicType.do',
+                        data: codes,
+                        type: 'post',
+                        dataType: 'json',
+                        success: function (data) {
+                            if (data.code == "1") {
+                                //alert("成功了");
+                                window.location.href = "settings/dictionary/type/index.do";
+                            } else {
+                                //提示信息
+                                alert(data.message);
+                            }
+                        }
+                    });
+                }
 
-           });
+            });
 
-           //给编辑按钮添加单机事件
+            //给编辑按钮添加单机事件
             $("#editDicTypeBtn").click(function () {
                 var $checkedTypes = $("#tBody input[type='checkbox']:checked");
-                if($checkedTypes.size()==0){
+                if ($checkedTypes.size() == 0) {
                     alert("请选择需要修改的字典类型");
                     return;
                 }
-                if($checkedTypes.size()>1){
+                if ($checkedTypes.size() > 1) {
                     alert("每次只能修改一条记录");
                     return;
                 }
                 var type = $checkedTypes[0].value;
-                window.location.href='settings/dictionary/type/edit.do?'+type;
+                window.location.href = 'settings/dictionary/type/edit.do?' + type;
             });
         });
     </script>
@@ -115,7 +117,8 @@
         <tbody id="tBody">
         <C:forEach items="${requestScope.typeList}" var="type" varStatus="stauts">
             <tr class="active">
-                <td><input type="checkbox" value="code=${type.code}&name=${type.name}&description=${type.description}"/></td>
+                <td><input type="checkbox" value="code=${type.code}&name=${type.name}&description=${type.description}"/>
+                </td>
                 <td>${stauts.count}</td>
                     <%--count从1开始--%>
                     <%--<td>${stauts.index}</td>--%> <%--index从0开始--%>
