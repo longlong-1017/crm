@@ -8,7 +8,11 @@ import com.atlong.crm.settings.domain.User;
 import com.atlong.crm.settings.domian.DictionaryValue;
 import com.atlong.crm.settings.service.DictionaryValueService;
 import com.atlong.crm.settings.service.UserService;
+import com.atlong.crm.workbench.domian.Activity;
 import com.atlong.crm.workbench.domian.Clue;
+import com.atlong.crm.workbench.domian.ClueRemark;
+import com.atlong.crm.workbench.service.ActivityService;
+import com.atlong.crm.workbench.service.ClueRemarkService;
 import com.atlong.crm.workbench.service.ClueService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,6 +39,12 @@ public class ClueController {
     @Autowired
     private DictionaryValueService dictionaryValueService;
 
+    @Autowired
+    private ClueRemarkService clueRemarkService;
+
+    @Autowired
+    private ActivityService activityService;
+
     @RequestMapping("/workbench/clue/index.do")
     public String index(HttpServletRequest request) {
         List<User> users = userService.queryAllUser();
@@ -43,23 +53,23 @@ public class ClueController {
         List<DictionaryValue> sourceList = dictionaryValueService.queryDicValuesByTypeCode("source");
         request.setAttribute("users", users);
         request.setAttribute("appellationList", appellationList);
-        request.setAttribute("clueStateList",clueStateList);
-        request.setAttribute("sourceList",sourceList);
+        request.setAttribute("clueStateList", clueStateList);
+        request.setAttribute("sourceList", sourceList);
         return "workbench/clue/index";
     }
 
     @RequestMapping("/workbench/clue/createClue.do")
     public @ResponseBody Object createClue(Clue clue, HttpSession session) {
-        ReturnObject returnObject=new ReturnObject();
+        ReturnObject returnObject = new ReturnObject();
         User user = (User) session.getAttribute(Constant.SESSION_USER);
         clue.setId(UUIDUtils.getUUID());
         clue.setCreateBy(user.getId());
         clue.setCreateTime(DateUtils.formatDate(new Date()));
         try {
             int ret = clueService.saveClue(clue);
-            if (ret==1){
+            if (ret == 1) {
                 returnObject.setCode(Constant.RETURN_OBJECT_CODE_SUCCESS);
-            }else {
+            } else {
                 returnObject.setCode(Constant.RETURN_OBJECT_CODE_FAIL);
                 returnObject.setMessage("系统忙，请稍后");
             }
@@ -72,22 +82,33 @@ public class ClueController {
     }
 
     @RequestMapping("/workbench/clue/queryClueByConditionForPage.do")
-    public @ResponseBody Object queryClueByConditionForPage(String fullname,String company,String phone,String source,String owner,String state,String mphone,int pageNo,int pageSize){
-        Map<String,Object> map=new HashMap<>();
-        map.put("fullname",fullname);
-        map.put("company",company);
-        map.put("phone",phone);
-        map.put("source",source);
-        map.put("owner",owner);
-        map.put("state",state);
-        map.put("mphone",mphone);
-        map.put("beginNo",(pageNo-1)*pageSize);
-        map.put("pageSize",pageSize);
+    public @ResponseBody Object queryClueByConditionForPage(String fullname, String company, String phone, String source, String owner, String state, String mphone, int pageNo, int pageSize) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("fullname", fullname);
+        map.put("company", company);
+        map.put("phone", phone);
+        map.put("source", source);
+        map.put("owner", owner);
+        map.put("state", state);
+        map.put("mphone", mphone);
+        map.put("beginNo", (pageNo - 1) * pageSize);
+        map.put("pageSize", pageSize);
         List<Clue> clueList = clueService.queryClueByConditionForPage(map);
-        int totalRows=clueService.queryCountOfClueByConditionForPage(map);
+        int totalRows = clueService.queryCountOfClueByConditionForPage(map);
         Map<String, Object> retMap = new HashMap<>();
         retMap.put("clueList", clueList);
         retMap.put("totalRows", totalRows);
         return retMap;
+    }
+
+    @RequestMapping("/workbench/clue/detailClue.do")
+    public String detailClue(String id,HttpServletRequest request){
+        Clue clue = clueService.queryClueById(id);
+        List<ClueRemark> clueRemarkList=clueRemarkService.queryClueRemarkForDetailByClueId(id);
+        List<Activity> activityList=activityService.queryActivityForDetailByClueId(id);
+        request.setAttribute("clue",clue);
+        request.setAttribute("clueRemarkList",clueRemarkList);
+        request.setAttribute("activityList",activityList);
+        return "workbench/clue/detail";
     }
 }

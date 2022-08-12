@@ -67,5 +67,10 @@ public class ActivityServiceImpl implements ActivityService {
         return activityMapper.selectActivityForDetailById(id);
     }
 
+    @Override
+    public List<Activity> queryActivityForDetailByClueId(String id) {
+        return null;
+    }
+
 
 }

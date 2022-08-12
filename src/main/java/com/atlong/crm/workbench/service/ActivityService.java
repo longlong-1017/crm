@@ -28,4 +28,6 @@ public interface ActivityService {
     int addActivities(List<Activity> activities);
 
     Activity queryActivityForDetailById(String id);
+
+    List<Activity> queryActivityForDetailByClueId(String id);
 }

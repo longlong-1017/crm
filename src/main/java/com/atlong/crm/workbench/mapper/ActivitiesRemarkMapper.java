@@ -59,4 +59,5 @@ public interface ActivitiesRemarkMapper {
      * @mbggenerated Sat Aug 06 20:58:05 CST 2022
      */
     int updateByPrimaryKey(ActivityRemark record);
+
 }
