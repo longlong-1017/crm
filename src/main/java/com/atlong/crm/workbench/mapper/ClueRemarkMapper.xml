@@ -178,8 +178,8 @@
         cr.edit_flag,
         cr.clue_id
         from tbl_clue_remark as cr
-        join tbl_user as u1 on cr.create_by=u1.name
-        left join tbl_user u2 on cr.edit_by=u2.name
-        where clue_id=#{id}
+        join tbl_user as u1 on cr.create_by=u1.id
+        left join tbl_user u2 on cr.edit_by=u2.id
+        where cr.clue_id=#{id}
     </select>
 </mapper>

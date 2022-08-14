@@ -10,21 +10,21 @@ import com.atlong.crm.settings.service.DictionaryValueService;
 import com.atlong.crm.settings.service.UserService;
 import com.atlong.crm.workbench.domian.Activity;
 import com.atlong.crm.workbench.domian.Clue;
+import com.atlong.crm.workbench.domian.ClueActivityRelation;
 import com.atlong.crm.workbench.domian.ClueRemark;
 import com.atlong.crm.workbench.service.ActivityService;
+import com.atlong.crm.workbench.service.ClueActivityRelationService;
 import com.atlong.crm.workbench.service.ClueRemarkService;
 import com.atlong.crm.workbench.service.ClueService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @Author: YunLong
@@ -44,6 +44,9 @@ public class ClueController {
 
     @Autowired
     private ActivityService activityService;
+
+    @Autowired
+    private ClueActivityRelationService clueActivityRelationService;
 
     @RequestMapping("/workbench/clue/index.do")
     public String index(HttpServletRequest request) {
@@ -102,13 +105,55 @@ public class ClueController {
     }
 
     @RequestMapping("/workbench/clue/detailClue.do")
-    public String detailClue(String id,HttpServletRequest request){
+    public String detailClue(String id, HttpServletRequest request) {
         Clue clue = clueService.queryClueById(id);
-        List<ClueRemark> clueRemarkList=clueRemarkService.queryClueRemarkForDetailByClueId(id);
-        List<Activity> activityList=activityService.queryActivityForDetailByClueId(id);
-        request.setAttribute("clue",clue);
-        request.setAttribute("clueRemarkList",clueRemarkList);
-        request.setAttribute("activityList",activityList);
+        List<ClueRemark> clueRemarkList = clueRemarkService.queryClueRemarkForDetailByClueId(id);
+        List<Activity> activityList = activityService.queryActivityForDetailByClueId(id);
+        request.setAttribute("clue", clue);
+        request.setAttribute("clueRemarkList", clueRemarkList);
+        request.setAttribute("activityList", activityList);
         return "workbench/clue/detail";
+    }
+
+    @RequestMapping("/workbench/clue/queryActivityForDetailByNameClueId.do")
+    public @ResponseBody Object queryActivityForDetailByNameClueId(String clueId, String activityName) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("activityName", activityName);
+        map.put("clueId", clueId);
+        //调用service方法查询市场活动
+        List<Activity> activityList = activityService.queryActivityForDetailByNameClueId(map);
+        return activityList;
+    }
+
+    @RequestMapping("/workbench/clue/saveBound.do")
+    public @ResponseBody Object saveBound(@RequestParam("activityId") String[] activityIds, String clueId) {
+        List<ClueActivityRelation> clueActivityRelations = new ArrayList<>();
+        //封装数据
+        ClueActivityRelation clueActivityRelation=null;
+        for (String activityId : activityIds) {
+            clueActivityRelation = new ClueActivityRelation();
+            clueActivityRelation.setId(UUIDUtils.getUUID());
+            clueActivityRelation.setClueId(clueId);
+            clueActivityRelation.setActivityId(activityId);
+            clueActivityRelations.add(clueActivityRelation);
+        }
+        ReturnObject returnObject = new ReturnObject();
+        try {
+            int ret = clueActivityRelationService.saveBoundByActivityIdsAndClueId(clueActivityRelations);
+            if (ret > 0) {
+                returnObject.setCode(Constant.RETURN_OBJECT_CODE_SUCCESS);
+                //根据id查询新关联的市场活动传入前端进行展示
+                List<Activity> activityList=activityService.queryActivitiesForBoundByIds(activityIds);
+                returnObject.setRetData(activityList);
+            } else {
+                returnObject.setCode(Constant.RETURN_OBJECT_CODE_FAIL);
+                returnObject.setMessage("系统忙，请稍后重试...");
+            }
+        } catch (Exception e) {
+            returnObject.setCode(Constant.RETURN_OBJECT_CODE_FAIL);
+            returnObject.setMessage("系统忙，请稍后重试...");
+            e.printStackTrace();
+        }
+        return returnObject;
     }
 }

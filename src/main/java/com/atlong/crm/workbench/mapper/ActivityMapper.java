@@ -2,6 +2,7 @@ package com.atlong.crm.workbench.mapper;
 
 import com.atlong.crm.workbench.domian.Activity;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -83,4 +84,8 @@ public interface ActivityMapper {
     Activity selectActivityForDetailById(String id);
 
     List<Activity> selectActivityForDetailByClueId(String id);
+
+    List<Activity> selectActivityForDetailByNameClueId(Map<String,Object> map);
+
+    List<Activity> selectActivitiesForBoundByIds(String[] activityIds);
 }

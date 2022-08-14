@@ -3,6 +3,7 @@ package com.atlong.crm.workbench.service;
 
 import com.atlong.crm.workbench.domian.Activity;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -30,4 +31,8 @@ public interface ActivityService {
     Activity queryActivityForDetailById(String id);
 
     List<Activity> queryActivityForDetailByClueId(String id);
+
+    List<Activity> queryActivityForDetailByNameClueId(Map<String,Object> map);
+
+    List<Activity> queryActivitiesForBoundByIds(String[] activityIds);
 }

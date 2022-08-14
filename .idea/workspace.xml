@@ -9,22 +9,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ffa7e1bc-91e5-44a9-8b00-6e98b464ef0f" name="Changes" comment="创建线索(正则表达式表单验证未做)&#10;查询线索(ClueController75行参数接收不到)">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/atlong/crm/workbench/service/ClueRemarkService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/atlong/crm/workbench/service/impl/ClueRemarkServiceImpl.java" afterDir="false" />
+    <list default="true" id="ffa7e1bc-91e5-44a9-8b00-6e98b464ef0f" name="Changes" comment="查看线索明细(jsp一个bug)">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/atlong/crm/workbench/service/ClueActivityRelationService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/atlong/crm/workbench/service/impl/ClueActivityRelationServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/atlong/crm/workbench/mapper/ActivitiesRemarkMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/atlong/crm/workbench/mapper/ActivitiesRemarkMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/atlong/crm/workbench/mapper/ActivityMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/atlong/crm/workbench/mapper/ActivityMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/atlong/crm/workbench/mapper/ActivityMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/atlong/crm/workbench/mapper/ActivityMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/atlong/crm/workbench/mapper/ClueMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/atlong/crm/workbench/mapper/ClueMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/atlong/crm/workbench/mapper/ClueMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/atlong/crm/workbench/mapper/ClueMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/atlong/crm/workbench/mapper/ClueRemarkMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/atlong/crm/workbench/mapper/ClueRemarkMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/atlong/crm/workbench/service/ActivityService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/atlong/crm/workbench/service/ActivityService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/atlong/crm/workbench/service/ClueService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/atlong/crm/workbench/service/ClueService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/atlong/crm/workbench/service/impl/ActivityServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/atlong/crm/workbench/service/impl/ActivityServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/atlong/crm/workbench/service/impl/ClueServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/atlong/crm/workbench/service/impl/ClueServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/atlong/crm/workbench/web/controller/ClueController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/atlong/crm/workbench/web/controller/ClueController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/workbench/clue/detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/workbench/clue/detail.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/workbench/clue/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/workbench/clue/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/workbench/clue/detail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/workbench/clue/detail.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -158,6 +153,7 @@
     </configuration>
     <configuration name="Tomcat 8.5.38" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.5.38" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
       <option name="BROWSER_ID" value="a7bb68e0-33c0-4d6f-a81a-aac1fdb870c8" />
+      <option name="COMMON_VM_ARGUMENTS" value="-Dfile.encoding=UTF-8" />
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
         <artifact name="crm:war exploded">
@@ -244,6 +240,12 @@
         </option>
       </method>
     </configuration>
+    <list>
+      <item itemvalue="JUnit.UserServiceImplTest.testQueryAllActAndNameMap" />
+      <item itemvalue="JUnit.UUIDUtils" />
+      <item itemvalue="JUnit.UUIDUtils.getUUID" />
+      <item itemvalue="Tomcat Server.Tomcat 8.5.38" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.UUIDUtils.getUUID" />
@@ -283,7 +285,8 @@
       <workItem from="1659925369481" duration="13666000" />
       <workItem from="1660117797202" duration="27146000" />
       <workItem from="1660187705604" duration="31385000" />
-      <workItem from="1660309952575" duration="9197000" />
+      <workItem from="1660309952575" duration="9491000" />
+      <workItem from="1660454124359" duration="15447000" />
     </task>
     <task id="LOCAL-00001" summary="crm创建市场活动">
       <created>1659099599269</created>
@@ -341,7 +344,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660230885462</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="查看线索明细(jsp一个bug)">
+      <created>1660319483273</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1660319483273</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -368,7 +378,8 @@
     <MESSAGE value="下载市场活动导入模板&#10;上传市场活动&#10;bug:日期处理 空指针异常(228行)" />
     <MESSAGE value="数据字典类型的增删改查&#10;dictionary/type/index.jsp页面 40行一个bug待处理" />
     <MESSAGE value="创建线索(正则表达式表单验证未做)&#10;查询线索(ClueController75行参数接收不到)" />
-    <option name="LAST_COMMIT_MESSAGE" value="创建线索(正则表达式表单验证未做)&#10;查询线索(ClueController75行参数接收不到)" />
+    <MESSAGE value="查看线索明细(jsp一个bug)" />
+    <option name="LAST_COMMIT_MESSAGE" value="查看线索明细(jsp一个bug)" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -69,7 +70,17 @@ public class ActivityServiceImpl implements ActivityService {
 
     @Override
     public List<Activity> queryActivityForDetailByClueId(String id) {
-        return null;
+        return activityMapper.selectActivityForDetailByClueId(id);
+    }
+
+    @Override
+    public List<Activity> queryActivityForDetailByNameClueId(Map<String,Object> map) {
+        return activityMapper.selectActivityForDetailByNameClueId(map);
+    }
+
+    @Override
+    public List<Activity> queryActivitiesForBoundByIds(String[] activityIds) {
+        return activityMapper.selectActivitiesForBoundByIds(activityIds);
     }
 
 
