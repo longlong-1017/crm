@@ -117,4 +117,8 @@
             </foreach>
 
     </insert>
+    <!--int deleteboundByClueAndActivityId(Map<String,Object> map);-->
+    <delete id="deleteboundByClueAndActivityId" parameterType="map">
+        delete from tbl_clue_activity_relation where clue_id=#{clueId} and activity_id=#{activityId}
+    </delete>
 </mapper>

@@ -61,4 +61,6 @@ public interface ClueMapper {
      * @mbggenerated Thu Aug 11 14:28:11 CST 2022
      */
     Clue selectByPrimaryKey(String id);
+
+    Clue selectClueForDetailById(String id);
 }

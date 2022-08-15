@@ -17,4 +17,6 @@ public interface ClueService {
     int queryCountOfClueByConditionForPage(Map<String,Object> map);
 
     Clue queryClueById(String id);
+
+    Clue queryClueForDetailById(String id);
 }

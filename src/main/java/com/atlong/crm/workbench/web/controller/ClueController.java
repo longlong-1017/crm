@@ -21,6 +21,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -106,7 +107,7 @@ public class ClueController {
 
     @RequestMapping("/workbench/clue/detailClue.do")
     public String detailClue(String id, HttpServletRequest request) {
-        Clue clue = clueService.queryClueById(id);
+        Clue clue = clueService.queryClueForDetailById(id);
         List<ClueRemark> clueRemarkList = clueRemarkService.queryClueRemarkForDetailByClueId(id);
         List<Activity> activityList = activityService.queryActivityForDetailByClueId(id);
         request.setAttribute("clue", clue);
@@ -155,5 +156,38 @@ public class ClueController {
             e.printStackTrace();
         }
         return returnObject;
+    }
+
+    @RequestMapping("/workbench/clue/saveUnbound.do")
+    public @ResponseBody Object saveUnbound(String clueId,String activityId){
+        Map<String,Object> map=new HashMap<>();
+        map.put("activityId",activityId);
+        map.put("clueId",clueId);
+        ReturnObject returnObject = new ReturnObject();
+        try {
+            int ret = clueActivityRelationService.saveUnbound(map);
+            if (ret==1){
+                returnObject.setCode(Constant.RETURN_OBJECT_CODE_SUCCESS);
+            }else {
+                returnObject.setCode(Constant.RETURN_OBJECT_CODE_FAIL);
+                returnObject.setMessage("系统忙，请稍后重试...");
+            }
+        } catch (Exception e) {
+            returnObject.setCode(Constant.RETURN_OBJECT_CODE_FAIL);
+            returnObject.setMessage("系统忙，请稍后重试...");
+            e.printStackTrace();
+        }
+        return returnObject;
+    }
+
+    @RequestMapping("/workbench/clue/toConvert.do")
+    public ModelAndView toConvert(ModelAndView mav,String id){
+        Clue clue = clueService.queryClueForDetailById(id);
+        List<DictionaryValue> stageList = dictionaryValueService.queryDicValuesByTypeCode("stage");
+        mav.addObject("clue",clue);
+        mav.addObject("stageList",stageList);
+        mav.setViewName("workbench/clue/convert");
+        //发送转发
+        return mav;
     }
 }

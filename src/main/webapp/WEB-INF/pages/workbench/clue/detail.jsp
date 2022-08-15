@@ -114,6 +114,41 @@
                 });
             });
 
+            //给解除关联连接添加单机事件
+            $("#relationTBody").on("click","a",function () {
+                //收集参数
+                var activityId = $(this).attr("activityId");
+                var clueId="${clue.id}";
+
+                if(window.confirm("确定删除吗？")){
+                    //发送Ajax
+                    $.ajax({
+                        url:'workbench/clue/saveUnbound.do',
+                        data:{
+                            activityId:activityId,
+                            clueId:clueId
+                        },
+                        type:'post',
+                        dataType:'json',
+                        success:function (data) {
+                            if(data.code=="1"){
+                                //局部刷新关联市场活动表
+                                $("#tr_"+activityId).remove();
+                            }else {
+                                alert(data.message);
+                            }
+                        }
+                    });
+                }
+            });
+
+            //给“转换按钮添加单机事件”
+            $("#covertClueBtn").click(function () {
+                //收集参数
+                var id='${clue.id}';
+                //发送同步请求
+                window.location.href="workbench/clue/toConvert.do?id="+id;
+            });
         });
 
         function queryActivityForDetailByNameClueId() {
@@ -217,7 +252,7 @@
         <h3>李四先生 <small>动力节点</small></h3>
     </div>
     <div style="position: relative; height: 50px; width: 500px;  top: -72px; left: 700px;">
-        <button type="button" class="btn btn-default" onclick="window.location.href='convert.html';"><span
+        <button type="button" class="btn btn-default" id="covertClueBtn"><span
                 class="glyphicon glyphicon-retweet"></span> 转换
         </button>
 
@@ -400,7 +435,7 @@
                 </thead>
                 <tbody id="relationTBody">
                 <c:forEach items="${activityList}" var="activity">
-                    <tr id="tr_"${activity.id}>
+                    <tr id="tr_${activity.id}">
                         <td>${activity.name}</td>
                         <td>${activity.startDate}</td>
                         <td>${activity.endDate}</td>

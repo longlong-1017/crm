@@ -37,4 +37,9 @@ public class ClueServiceImpl implements ClueService {
     public Clue queryClueById(String id) {
         return clueMapper.selectByPrimaryKey(id);
     }
+
+    @Override
+    public Clue queryClueForDetailById(String id) {
+        return clueMapper.selectClueForDetailById(id);
+    }
 }

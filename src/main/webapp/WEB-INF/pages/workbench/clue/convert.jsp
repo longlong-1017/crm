@@ -1,11 +1,15 @@
-﻿<!DOCTYPE html>
+﻿<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/";
+%>
 <html>
 <head>
-<meta charset="UTF-8">
-
-<link href="../../jquery/bootstrap_3.3.0/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
-<script type="text/javascript" src="../../jquery/jquery-1.11.1-min.js"></script>
-<script type="text/javascript" src="../../jquery/bootstrap_3.3.0/js/bootstrap.min.js"></script>
+	<base href="<%=basePath%>">
+	<meta charset="UTF-8">
+<link href="jquery/bootstrap_3.3.0/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="jquery/jquery-1.11.1-min.js"></script>
+<script type="text/javascript" src="jquery/bootstrap_3.3.0/js/bootstrap.min.js"></script>
 
 
 <link href="jquery/bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css" type="text/css" rel="stylesheet" />
@@ -80,13 +84,13 @@
 	</div>
 
 	<div id="title" class="page-header" style="position: relative; left: 20px;">
-		<h4>转换线索 <small>李四先生-动力节点</small></h4>
+		<h4>转换线索 <small>${clue.fullname}${clue.appellation}-${clue.company}</small></h4>
 	</div>
 	<div id="create-customer" style="position: relative; left: 40px; height: 35px;">
-		新建客户：动力节点
+		新建客户：${clue.company}
 	</div>
 	<div id="create-contact" style="position: relative; left: 40px; height: 35px;">
-		新建联系人：李四先生
+		新建联系人：${clue.fullname}${clue.appellation}
 	</div>
 	<div id="create-transaction1" style="position: relative; left: 40px; height: 35px; top: 25px;">
 		<input type="checkbox" id="isCreateTransaction"/>
@@ -101,7 +105,7 @@
 		  </div>
 		  <div class="form-group" style="width: 400px;position: relative; left: 20px;">
 		    <label for="tradeName">交易名称</label>
-		    <input type="text" class="form-control" id="tradeName" value="动力节点-">
+		    <input type="text" class="form-control" id="tradeName" value="${clue.company}-">
 		  </div>
 		  <div class="form-group" style="width: 400px;position: relative; left: 20px;">
 		    <label for="expectedClosingDate">预计成交日期</label>
@@ -111,7 +115,11 @@
 		    <label for="stage">阶段</label>
 		    <select id="stage"  class="form-control">
 		    	<option></option>
-		    	<option>资质审查</option>
+				<c:forEach items="${stageList}" var="stage">
+					<option value="${stage.id}">${stage.value}</option>
+				</c:forEach>
+
+				<%--<option>资质审查</option>
 		    	<option>需求分析</option>
 		    	<option>价值建议</option>
 		    	<option>确定决策者</option>
@@ -119,7 +127,7 @@
 		    	<option>谈判/复审</option>
 		    	<option>成交</option>
 		    	<option>丢失的线索</option>
-		    	<option>因竞争丢失关闭</option>
+		    	<option>因竞争丢失关闭</option>--%>
 		    </select>
 		  </div>
 		  <div class="form-group" style="width: 400px;position: relative; left: 20px;">
@@ -132,12 +140,12 @@
 	
 	<div id="owner" style="position: relative; left: 40px; height: 35px; top: 50px;">
 		记录的所有者：<br>
-		<b>zhangsan</b>
+		<b>${clue.owner}</b>
 	</div>
 	<div id="operation" style="position: relative; left: 40px; height: 35px; top: 100px;">
 		<input class="btn btn-primary" type="button" value="转换">
 		&nbsp;&nbsp;&nbsp;&nbsp;
-		<input class="btn btn-default" type="button" value="取消">
+		<input class="btn btn-default" type="button" onclick="window.history.back();" value="取消">
 	</div>
 </body>
 </html>
