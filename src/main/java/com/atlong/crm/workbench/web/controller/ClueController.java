@@ -190,4 +190,39 @@ public class ClueController {
         //发送转发
         return mav;
     }
+
+    @RequestMapping("/workbench/clue/queryActivityForConvertByNameClueId.do")
+    public @ResponseBody Object  queryActivityForConvertByNameClueId(String activityName,String clueId){
+        Map<String,Object> map=new HashMap<>();
+        map.put("clueId",clueId);
+        map.put("activityName",activityName);
+        List<Activity> activityList = activityService.queryActivityForConvertByNameClueId(map);
+        return activityList;
+    }
+
+    @RequestMapping("/workbench/clue/convertClue.do")
+    public @ResponseBody ReturnObject convertClue(String clueId,String money,String name,String expectedDate,String stage,String activityId,String isCreateTran,HttpSession session){
+        //封装参数
+        Object user = session.getAttribute(Constant.SESSION_USER);
+        Map<String,Object> map=new HashMap<>();
+        map.put("clueId",clueId);
+        map.put("money",money);
+        map.put("name",name);
+        map.put("expectedDate",expectedDate);
+        map.put("stage",stage);
+        map.put("activityId",activityId);
+        map.put("isCreateTran",isCreateTran);
+        map.put(Constant.SESSION_USER,user);
+        ReturnObject returnObject = new ReturnObject();
+        //调用service方法
+        try {
+            clueService.saveConvertClue(map);
+            returnObject.setCode(Constant.RETURN_OBJECT_CODE_SUCCESS);
+        } catch (Exception e) {
+            returnObject.setCode(Constant.RETURN_OBJECT_CODE_FAIL);
+            returnObject.setMessage("系统忙，请稍后重试");
+            e.printStackTrace();
+        }
+        return returnObject;
+    }
 }

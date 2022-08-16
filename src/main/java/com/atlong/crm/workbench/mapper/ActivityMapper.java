@@ -88,4 +88,6 @@ public interface ActivityMapper {
     List<Activity> selectActivityForDetailByNameClueId(Map<String,Object> map);
 
     List<Activity> selectActivitiesForBoundByIds(String[] activityIds);
+
+    List<Activity> selectActivityForConvertByNameClueId(Map<String, Object> map);
 }

@@ -112,13 +112,30 @@
     <insert id="insertBoundByActivityIdsAndClueId" parameterType="list">
         insert into tbl_clue_activity_relation (id, clue_id, activity_id)
         values
-            <foreach collection="list" item="clueActivityRelation" separator=",">
-                (#{clueActivityRelation.id,jdbcType=CHAR}, #{clueActivityRelation.clueId,jdbcType=CHAR}, #{clueActivityRelation.activityId,jdbcType=CHAR})
-            </foreach>
+        <foreach collection="list" item="clueActivityRelation" separator=",">
+            (#{clueActivityRelation.id,jdbcType=CHAR}, #{clueActivityRelation.clueId,jdbcType=CHAR},
+            #{clueActivityRelation.activityId,jdbcType=CHAR})
+        </foreach>
 
     </insert>
     <!--int deleteboundByClueAndActivityId(Map<String,Object> map);-->
     <delete id="deleteboundByClueAndActivityId" parameterType="map">
-        delete from tbl_clue_activity_relation where clue_id=#{clueId} and activity_id=#{activityId}
+        delete
+        from tbl_clue_activity_relation
+        where clue_id = #{clueId}
+          and activity_id = #{activityId}
+    </delete>
+
+    <!--void selectByClueId(String clueId);-->
+    <select id="selectByClueId" parameterType="string" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tbl_clue_activity_relation
+        where clue_id=#{clueId}
+    </select>
+
+    <!--void deleteClueActivityRelationByClueId(String clueId);-->
+    <delete id="deleteClueActivityRelationByClueId" parameterType="string">
+        delete from tbl_clue_activity_relation where clue_id = #{clueId}
     </delete>
 </mapper>

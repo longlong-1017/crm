@@ -19,4 +19,6 @@ public interface ClueService {
     Clue queryClueById(String id);
 
     Clue queryClueForDetailById(String id);
+
+    void saveConvertClue(Map<String, Object> map);
 }

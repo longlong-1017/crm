@@ -168,18 +168,31 @@
 
     <!--List<ClueRemark> selectClueRemarkForDetailByClueId(String id);-->
     <select id="selectClueRemarkForDetailByClueId" parameterType="string" resultMap="BaseResultMap">
-        select
-        cr.id,
-        cr.note_content,
-        u1.name as create_by,
-        cr.create_time,
-        u2.name as edit_by,
-        cr.edit_time,
-        cr.edit_flag,
-        cr.clue_id
+        select cr.id,
+               cr.note_content,
+               u1.name as create_by,
+               cr.create_time,
+               u2.name as edit_by,
+               cr.edit_time,
+               cr.edit_flag,
+               cr.clue_id
         from tbl_clue_remark as cr
-        join tbl_user as u1 on cr.create_by=u1.id
-        left join tbl_user u2 on cr.edit_by=u2.id
-        where cr.clue_id=#{id}
+                 join tbl_user as u1 on cr.create_by = u1.id
+                 left join tbl_user u2 on cr.edit_by = u2.id
+        where cr.clue_id = #{id}
     </select>
+    <!-- List<ClueRemark> selectClueRemarksByClueId(String clueId);-->
+    <select id="selectClueRemarksByClueId" parameterType="string" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tbl_clue_remark
+        where clue_id=#{clueId}
+    </select>
+
+    <!--void deleteClueRemarkByClueId(String clueId);-->
+    <delete id="deleteClueRemarkByClueId" parameterType="string">
+        delete
+        from tbl_clue_remark
+        where clue_id = #{clueId}
+    </delete>
 </mapper>

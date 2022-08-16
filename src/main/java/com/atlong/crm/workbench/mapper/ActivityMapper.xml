@@ -370,4 +370,21 @@
         from tbl_clue_activity_relation
         where clue_id = #{clueId})
     </select>
+
+    <!-- List<Activity> selectActivityForConvertByNameClueId(Map<String, Object> map);-->
+    <select id="selectActivityForConvertByNameClueId" parameterType="map" resultMap="BaseResultMap">
+        select a.id,
+        a.name,
+        a.start_date,
+        a.end_date,
+        u.name as owner
+        from tbl_activity a
+        join tbl_user u on a.owner = u.id where
+        <if test="activityName!=null">
+            a.name like '%' #{activityName} '%' and
+        </if>
+        a.id in (select activity_id
+        from tbl_clue_activity_relation
+        where clue_id = #{clueId})
+    </select>
 </mapper>

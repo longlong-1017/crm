@@ -63,4 +63,6 @@ public interface ClueMapper {
     Clue selectByPrimaryKey(String id);
 
     Clue selectClueForDetailById(String id);
+
+    void deleteClueById(String id);
 }
