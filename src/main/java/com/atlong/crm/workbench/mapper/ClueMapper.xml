@@ -78,14 +78,14 @@
             <if test="email != null">
                 email,
             </if>
-            <if test="mphone != null">
-                mphone,
+            <if test="phone != null">
+                phone,
             </if>
             <if test="website != null">
                 website,
             </if>
-            <if test="mmphone != null">
-                mmphone,
+            <if test="mphone != null">
+                mphone,
             </if>
             <if test="state != null">
                 state,
@@ -140,14 +140,14 @@
             <if test="email != null">
                 #{email,jdbcType=VARCHAR},
             </if>
-            <if test="mphone != null">
-                #{mphone,jdbcType=VARCHAR},
+            <if test="phone != null">
+                #{phone,jdbcType=VARCHAR},
             </if>
             <if test="website != null">
                 #{website,jdbcType=VARCHAR},
             </if>
-            <if test="mmphone != null">
-                #{mmphone,jdbcType=VARCHAR},
+            <if test="mphone != null">
+                #{mphone,jdbcType=VARCHAR},
             </if>
             <if test="state != null">
                 #{state,jdbcType=VARCHAR},
@@ -207,14 +207,14 @@
             <if test="email != null">
                 email = #{email,jdbcType=VARCHAR},
             </if>
-            <if test="mphone != null">
-                mphone = #{mphone,jdbcType=VARCHAR},
+            <if test="phone != null">
+                phone = #{phone,jdbcType=VARCHAR},
             </if>
             <if test="website != null">
                 website = #{website,jdbcType=VARCHAR},
             </if>
-            <if test="mmphone != null">
-                mmphone = #{mmphone,jdbcType=VARCHAR},
+            <if test="mphone != null">
+                mphone = #{mphone,jdbcType=VARCHAR},
             </if>
             <if test="state != null">
                 state = #{state,jdbcType=VARCHAR},
@@ -262,9 +262,9 @@
         company = #{company,jdbcType=VARCHAR},
         job = #{job,jdbcType=VARCHAR},
         email = #{email,jdbcType=VARCHAR},
-        mphone = #{mphone,jdbcType=VARCHAR},
+        phone = #{phone,jdbcType=VARCHAR},
         website = #{website,jdbcType=VARCHAR},
-        mmphone = #{mmphone,jdbcType=VARCHAR},
+        mphone = #{mphone,jdbcType=VARCHAR},
         state = #{state,jdbcType=VARCHAR},
         source = #{source,jdbcType=VARCHAR},
         create_by = #{createBy,jdbcType=VARCHAR},
@@ -287,13 +287,13 @@
         -->
         insert into tbl_clue (id, fullname, appellation,
         owner, company, job, email,
-        mphone, website, mmphone,
+        phone, website, mphone,
         state, source, create_by,
         create_time,description, contact_summary, next_contact_time,
         address)
         values (#{id,jdbcType=CHAR}, #{fullname,jdbcType=VARCHAR}, #{appellation,jdbcType=VARCHAR},
         #{owner,jdbcType=CHAR}, #{company,jdbcType=VARCHAR}, #{job,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},
-        #{mphone,jdbcType=VARCHAR}, #{website,jdbcType=VARCHAR}, #{mmphone,jdbcType=VARCHAR},
+        #{phone,jdbcType=VARCHAR}, #{website,jdbcType=VARCHAR}, #{mphone,jdbcType=VARCHAR},
         #{state,jdbcType=VARCHAR}, #{source,jdbcType=VARCHAR}, #{createBy,jdbcType=VARCHAR},
         #{createTime,jdbcType=CHAR},#{description,jdbcType=VARCHAR}, #{contactSummary,jdbcType=VARCHAR},
         #{nextContactTime,jdbcType=CHAR},

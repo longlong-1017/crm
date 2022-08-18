@@ -106,6 +106,8 @@
                             //刷新页面
                             //关闭模态窗口
                             $("#createClueModal").modal("hide");
+                            //刷新市场活动列，显示第一页数据
+                            queryClueByConditionForPage(1, $("#demo_pag1").bs_pagination('getOption', 'rowsPerPage'));
                         } else {
                             alert(data.message);
                             $("#createClueModal").modal("show");

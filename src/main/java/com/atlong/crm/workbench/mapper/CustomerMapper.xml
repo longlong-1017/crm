@@ -227,4 +227,9 @@
         #{nextContactTime,jdbcType=CHAR}, #{description,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}
         )
     </insert>
+
+    <!--  List<Customer> selectCustomerNameByName(String customerName);-->
+    <select id="selectCustomerNameByName" parameterType="string" resultType="string">
+        select name from tbl_customer where name like '%' #{name} '%'
+    </select>
 </mapper>
